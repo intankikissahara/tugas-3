@@ -1,73 +1,116 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
-<!-- By default, only the Clean and Build commands use this build script. -->
-<!-- Commands such as Run, Debug, and Test only use this build script if -->
-<!-- the Compile on Save feature is turned off for the project. -->
-<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
-<!-- in the project's Project Properties dialog box.-->
-<project name="tugas-3" default="default" basedir=".">
-    <description>Builds, tests, and runs the project tugas-3.</description>
-    <import file="nbproject/build-impl.xml"/>
-    <!--
-
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
-
-      -pre-init:                 called before initialization of project properties
-      -post-init:                called after initialization of project properties
-      -pre-compile:              called before javac compilation
-      -post-compile:             called after javac compilation
-      -pre-compile-single:       called before javac compilation of single file
-      -post-compile-single:      called after javac compilation of single file
-      -pre-compile-test:         called before javac compilation of JUnit tests
-      -post-compile-test:        called after javac compilation of JUnit tests
-      -pre-compile-test-single:  called before javac compilation of single JUnit test
-      -post-compile-test-single: called after javac compilation of single JUunit test
-      -pre-jar:                  called before JAR building
-      -post-jar:                 called after JAR building
-      -post-clean:               called after cleaning build products
-
-    (Targets beginning with '-' are not intended to be called on their own.)
-
-    Example of inserting an obfuscator after compilation could look like this:
-
-        <target name="-post-compile">
-            <obfuscate>
-                <fileset dir="${build.classes.dir}"/>
-            </obfuscate>
-        </target>
-
-    For list of available properties check the imported 
-    nbproject/build-impl.xml file. 
-
-
-    Another way to customize the build is by overriding existing main targets.
-    The targets of interest are: 
-
-      -init-macrodef-javac:     defines macro for javac compilation
-      -init-macrodef-junit:     defines macro for junit execution
-      -init-macrodef-debug:     defines macro for class debugging
-      -init-macrodef-java:      defines macro for class execution
-      -do-jar:                  JAR building
-      run:                      execution of project 
-      -javadoc-build:           Javadoc generation
-      test-report:              JUnit report generation
-
-    An example of overriding the target for project execution could look like this:
-
-        <target name="run" depends="tugas-3-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
-
-    Notice that the overridden target depends on the jar target and not only on 
-    the compile target as the regular run target does. Again, for a list of available 
-    properties which you can use, check the target you are overriding in the
-    nbproject/build-impl.xml file. 
-
-    -->
-</project>
+public class AngkaHuruf {
+    private int angka;
+    private int satuan;
+    private int puluhan;
+    private String huruf;
+    private String tmp;
+    private String tmp1;
+    public AngkaHuruf(int a){ overloadingMeth(a); }
+    public AngkaHuruf(String a){   
+    overloadingMeth(a); }
+    public AngkaHuruf(){}
+    void setString(String a){
+        System.out.println("Hasil konversi :");
+        overloadingMeth(a); }
+    void setInt(int a){
+        System.out.println("Hasil konversi :");
+        overloadingMeth(a); }
+    void overloadingMeth(int nomor) {
+        if (nomor == 0) {
+            System.out.println("Nol");
+        } else if (nomor >= 1 && nomor <= 9) {
+            satuan = nomor;
+            System.out.println(ubah(satuan));
+        } else if (nomor >= 10 && nomor <= 19) {
+            satuan = nomor % 10;
+            puluhan = nomor / 10;
+            if (satuan == 0) {
+                System.out.println("se" + 
+                ubah(satuan));
+            } else if (satuan == 1) {
+                System.out.println("sebelas");
+            } else {
+                System.out.println(ubah(satuan) + " 
+                belas");}
+        } else if (nomor >= 20 && nomor <= 99) {
+            satuan = nomor % 10;
+            puluhan = nomor / 10;
+            if (satuan != 0) {
+                System.out.println(ubah(puluhan) + 
+                " puluh " + ubah(satuan));
+            } else {
+                System.out.println(ubah(puluhan) + 
+                " " + ubah(satuan)); }
+        } else if(nomor==100) {
+            puluhan = nomor / 10;
+            System.out.println(ubah(puluhan)); }
+        else{
+            System.out.println("Maaf, input 
+            salah."); }}
+    String ubah(int angka) {
+        switch (angka) {
+            case 0: huruf = "puluh";break;
+            case 1: huruf = "satu";break;
+            case 2: huruf = "dua";break;
+            case 3: huruf = "tiga";break;
+            case 4: huruf = "empat";break;
+            case 5: huruf = "lima";break;
+            case 6: huruf = "enam";break;
+            case 7: huruf = "tujuh";break;
+            case 8: huruf = "delapan";break;
+            case 9: huruf = "sembilan";break;
+            case 10: huruf = "seratus";break; }
+        return huruf;}
+    void overloadingMeth(String nomor) {
+        if(nomor.length()<=3){
+            System.out.println("Input salah");}
+      else if (nomor. length()>=3 && nomor.length() 
+      <= 8) {
+            tmp = nomor.substring(0, 3);
+            System.out.println(ubah(tmp));
+        } else {
+            for (int i = 0; i < nomor.length()-4; 
+            i++) {
+                if (nomor.substring(i, i + 
+                5).equalsIgnoreCase("belas")) {
+                    tmp = nomor.substring(0, 3);
+                    System.out.println(1 + "" + 
+                    ubah(tmp));
+                    break;}
+                if (nomor.substring(i, i + 
+                5).equalsIgnoreCase("puluh")) {
+                     if(nomor.substring
+                     (nomor.length() – 3,
+                     nomor.length())
+                     .equalsIgnoreCase"luh")) {
+                        tmp = nomor.substring(0,3);
+                        tmp1 = nomor.substring(i, i  
+                        + 3);
+                     System.out.println(ubah(tmp) + 
+                     "" + ubah(tmp1)); break; }
+                    else{
+                        tmp = nomor.substring(0,3);
+                        tmp1 = nomor.substring
+                        (i+6,i+9);
+                       System.out.println(ubah(tmp) 
+                       + "" + ubah(tmp1)); }}}}}
+    int ubah(String nomor) {
+        switch (nomor) {
+            case "pul":angka = 0; break;
+            case "sat":angka = 1; break;
+            case "dua":angka = 2; break;
+            case "tig":angka = 3; break;
+            case "emp":angka = 4; break;
+            case "lim":angka = 5; break;
+            case "ena":angka = 6; break;
+            case "tuj":angka = 7; break;
+            case "del":angka = 8; break;
+            case "sem":angka = 9; break;
+            case "ser":angka = 100; break;
+            case "sep":angka = 10; break;
+            case "seb":angka = 11; break;
+            default : System.out.println("Input 
+            salah");break; }
+        return angka;
+    }
+}
